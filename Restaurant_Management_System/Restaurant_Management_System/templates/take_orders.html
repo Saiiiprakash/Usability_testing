@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body class="staff_body">
+    <header>
+        <nav style="left:20%">
+            <ul>
+                <li><a href="/staff_home"  >Home</a></li>
+                <li><a href="/take_orders" class="cta">Take Orders</a></li>
+                <li><a href="/order_history">Order History</a></li>
+                <li><a href="/feedback_history">Feedback History</a></li>
+                <li><a href="/logout">logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container" style="left:30%">
+        <form method="post" action="take_orders">
+        <label>Select Table</label>
+        <select name="table" onchange="this.form.submit()">
+            <option value="">Select</option>
+            {% for table in tables %}
+            {% if table['TABLE_ID']==selected_table %}
+           
+            <option value="{{table['TABLE_ID']}}" selected>{{table.TABLE_ID}}</option>
+            {% else %}
+            <option value="{{table['TABLE_ID']}}">{{table.TABLE_ID}}</option>
+            {% endif %}
+           
+            {% endfor %}
+        </select>
+    </form>
+        
+        {% if selected_table and (food_items|length)>0 %}
+    <table>
+      <th>Food Name</th>
+      <th>Food Price</th>
+      <th>Ingredient</th>
+      <th>Calories</th>
+      <th>Add to order</th>
+      {% for food in food_items %}
+      <form method="post" action="take_orders">
+        <input type="hidden" name="customerId" value="{{customerId}}">
+        <input type="hidden" id="tableId" name="tableId" value="{{selected_table}}">
+      <input type="hidden" id="foodId" name="foodId" value="{{food['FOOD_ID']}}">
+      <tr>
+        <td>{{food["NAME"]}}</td>
+        <td>{{food["PRICE"]}}</td>
+        <td>{{food["INGREDIENT_NAME"]}}</td>
+        <td>{{food["CALORIES"]}}</td>
+        <td><button value="add">Add</button></td>
+      </tr>
+    </form>
+      {% endfor %}
+    </table>
+    {% endif %}
+    <form method="get" action="take_orders">
+      <button>Reset</button>
+    </form>
+
+    <h3>Orders</h3>
+        <table>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Wait time</th>
+            <th>Status</th>
+          
+            {% for order in orders%}
+            <tr>
+                <td>{{order['NAME']}}</td>
+                <td>{{order['PRICE']}}</td>
+                <td>{{order['WAIT_TIME']}} minutes</td>
+                <td>{{order['STATUS']}}</td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+        <label>Total : {{ orders | sum(attribute='PRICE') }}</label>
+       
+    </div>
+</body>
+</html>

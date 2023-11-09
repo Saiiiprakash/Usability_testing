@@ -1,0 +1,22 @@
+INGREDIENT_ID,BRANCH_ID,FOOD_ID,INGREDIENT_NAME,CALORIES
+1,1,1,wheat,20
+2,1,2,corrinder,20
+3,1,3,wheat,20
+4,1,4,wheat,20
+5,1,5,wheat,20
+6,2,6,wheat,20
+7,2,7,wheat,20
+8,2,8,wheat,20
+9,2,9,wheat,20
+10,2,10,wheat,20
+11,3,11,wheat,20
+12,3,12,wheat,20
+13,3,13,wheat,20
+14,3,14,wheat,20
+15,3,15,wheat,20
+16,4,16,wheat,20
+17,4,17,wheat,20
+18,4,18,wheat,20
+19,4,19,milk rice,20
+20,4,20,flour artificial,20
+21,5,21,corn flour,20

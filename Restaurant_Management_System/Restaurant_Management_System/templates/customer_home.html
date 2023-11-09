@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <nav class="menu2">
+        <menu>
+            <li><a href="/customer_home" >Home</a></li>
+            <li><a href="/book_table">Book Table</a></li>
+            <li><a href="/customer_menu" class="cta">Menu</a></li>
+            <li><a href="/take_away">Take Away</a></li>
+            <li><a href="/make_payment">Make Payment for Table</a></li>
+            <li><a href="/feedback">Feedback</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </menu>
+      </nav>
+    <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+  
+        <p class="messages" style="background: white;"> {{ message }} </p>
+  
+        {% endfor %}
+        {% else %}
+        <!-- Container for restaurant description -->
+        <div class="Container" style="background-color: #f7f5f59d;" >
+          <h2>Welcome to our restaurant management system</h2>
+          <p>Explore our delicious menu and enjoy a great dining experience.</p>
+        </div>
+        {% endif %}
+        {% endwith%}
+    </div>
+</body>
+</html>

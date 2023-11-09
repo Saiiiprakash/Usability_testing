@@ -1,0 +1,23 @@
+FOOD_ID,BRANCH_ID,NAME,QUANTITY,PRICE
+1,1,noodles,1,10
+2,1,chicken,1,20
+3,1,lolly pop,1,30
+4,1,fish finger,1,40
+5,1,rice,1,50
+6,2,noodles,1,20
+7,2,chicken,1,30
+8,2,lolly pop,1,40
+9,2,fish finger,1,50
+10,2,rice,1,60
+11,3,noodles,1,20
+12,3,chicken,1,30
+13,3,lolly pop,1,40
+14,3,fish finger,1,50
+15,3,rice,1,60
+16,4,noodles,1,20
+17,4,chicken,1,30
+18,4,lolly pop,1,40
+19,4,fish finger,1,50
+20,4,rice,1,60
+21,5,burger,1,60
+

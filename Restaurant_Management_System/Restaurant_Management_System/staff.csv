@@ -1,0 +1,7 @@
+STAFF_ID,BRANCH_ID,NAME,PASSWORD
+1,1,john,john
+2,1,peter,peter
+3,2,parker,parker
+4,2,john,john
+5,3,henry,henry
+6,4,cavil,cavil

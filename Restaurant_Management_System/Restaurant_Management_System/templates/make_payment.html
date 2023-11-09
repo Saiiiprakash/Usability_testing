@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<script>
+ 
+</script>
+
+<body>
+  <nav class="menu2">
+    <menu>
+      <li><a href="/customer_home">Home</a></li>
+      <li><a href="/book_table">Book Table</a></li>
+      <li><a href="/customer_menu">Menu</a></li>
+      <li><a href="/take_away" class="cta">Take Away</a></li>
+      <li><a href="/make_payment">Make Payment for Table</a></li>
+      <li><a href="/feedback">Feedback</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </menu>
+  </nav>
+  <div class="container">
+    
+    <form action="make_payment" method="post">
+      <label>Select Booked Table</label>
+      <select name="table"  onchange="this.form.submit()">
+      <option value=""></option>
+
+      {% for table in tables %}
+            {% if table['TABLE_ID']==selected_table %}
+
+            <option value="{{table['TABLE_ID']}}" selected>{{table['TABLE_ID']}}</option>
+            {% else %}
+            <option value="{{table['TABLE_ID']}}">{{table['TABLE_ID']}}</option>
+            {% endif %}
+
+            {% endfor %}
+      </select>
+    </form>
+    
+    <h3>Orders</h3>
+        <table>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Wait time</th>
+            <th>Status</th>
+          
+            {% for order in orders%}
+            <tr>
+                <td>{{order['NAME']}}</td>
+                <td>{{order['PRICE']}}</td>
+                <td>{{order['WAIT_TIME']}} minutes</td>
+                <td>{{order['STATUS']}}</td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+        <label>Total : {{ orders | sum(attribute='PRICE') }}</label>
+        <div>
+        <button onclick="window.print()">Print Bill</button>
+      </div>
+      <div>
+        <form method="post" action="make_table_pay">
+          <input type="hidden" id="tableid" name="tableid" value="{{selected_table}}">
+          <button>Pay By Cash</button>
+        </form>
+      </div>
+        <form method="post" action="make_table_pay">
+          <div>
+          <input type="hidden" id="tableid" name="tableid" value="{{selected_table}}">
+          <label>Card Number</label>
+        
+        
+        <input type="number" name="card_id" required min="16" placeholder="Enter 16-digit card number">
+      </div>
+      <div>
+        <label>Card CCV</label>
+        <input type ="number" name="ccv" required min="3" placeholder="Enter 3-digit CCV">
+      </div>
+      <div>
+        <label>Card valid month MM</label>
+        <input type ="number" name="month" required min="1" max="12" placeholder="Enter the month (1-12)">
+      </div>
+      <div>
+        <label>Card valid year yy</label>
+        <input type ="number" name="Year" required min="23" max="45" placeholder="Enter the year (23-45)">
+      </div>
+      <div>
+        <button>Pay By Card</button>
+      </div>
+      </form>
+  </div>
+</body>
+
+</html>

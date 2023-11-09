@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>   
+    <nav class="menu2">
+        <menu>
+            <li><a href="/customer_home" >Home</a></li>
+            <li><a href="/book_table">Book Table</a></li>
+            <li><a href="/customer_menu" class="cta">Menu</a></li>
+            <li><a href="/take_away">Take Away</a></li>
+            <li><a href="/make_payment">Make Payment for Table</a></li>
+            <li><a href="/feedback">Feedback</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </menu>
+      </nav>
+      
+<div class="container">
+    <form action="/book_table" method="post">
+    <div class="row">
+        <center><h3>Table booking</h3></center><br>
+      <div class="col-25">
+        <label>Select a restaurant</label>
+      </div>
+      <div class="col-75">
+        <select name="restaurant" onchange="this.form.submit()">
+            <option value="0">select</option>
+            {% for restaurant in restaurants %}
+            {{selected_restaurant }} {{ restaurant['RESTAURANT_ID']==selected_restaurant}}
+            {% if restaurant['RESTAURANT_ID']==selected_restaurant %}
+           
+            <option value="{{restaurant['RESTAURANT_ID']}}" selected>{{restaurant.RESTAURANT_NAME}}</option>
+            {% else %}
+            <option value="{{restaurant['RESTAURANT_ID']}}">{{restaurant.RESTAURANT_NAME}}</option>
+            {% endif %}
+           
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label >Select a Branch</label>
+      </div>
+      <div class="col-75">
+        <select name="branch" onchange="this.form.submit()">
+            <option value="0">select</option>
+            {% for branch in branches %}
+            {% if branch['BRANCH_ID']==selected_branch %}
+           
+            <option value="{{branch['BRANCH_ID']}}" selected>{{branch.BRANCH_NAME}}</option>
+            {% else %}
+            <option value="{{branch['BRANCH_ID']}}">{{branch.BRANCH_NAME}}</option>
+            {% endif %}
+           
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label >Select a Table</label>
+      </div>
+      <div class="col-75">
+        <select name="table" required>
+            <option value="">select</option>
+            {% for table in tables %}
+            {% if table['TABLE_ID']==selected_table %}
+           
+            <option value="{{table['TABLE_ID']}}" selected>{{table.TABLE_ID}}</option>
+            {% else %}
+            <option value="{{table['TABLE_ID']}}">{{table.TABLE_ID}}</option>
+            {% endif %}
+           
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label >Select a Parking Slot</label>
+      </div>
+      <div class="col-75">
+        <select name="parking" required>
+            <option value="">select</option>
+            {% for park in parkings %}
+            {% if park['PARKING_ID']==selected_park %}
+           
+            <option value="{{park['PARKING_ID']}}" selected>{{park.PARKING_ID}}</option>
+            {% else %}
+            <option value="{{park['PARKING_ID']}}">{{park.PARKING_ID}}</option>
+            {% endif %}
+           
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+        <input type="number" name="noofpersons" min="1" max="5" placeholder="No of persons" required><br><br>
+        <center><button type="submit">Book</button></center>
+    </div>
+    </form>
+  </div>
+  
+</body>
+
+</html>

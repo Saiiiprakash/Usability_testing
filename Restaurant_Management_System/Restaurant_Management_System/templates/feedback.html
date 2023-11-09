@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>   
+    <nav class="menu2">
+        <menu>
+            <li><a href="/customer_home" >Home</a></li>
+            <li><a href="/book_table">Book Table</a></li>
+            <li><a href="/customer_menu" class="cta">Menu</a></li>
+            <li><a href="/take_away">Take Away</a></li>
+            <li><a href="/make_payment">Make Payment for Table</a></li>
+            <li><a href="/feedback">Feedback</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </menu>
+      </nav>
+      
+<div class="container">
+    <form action="/feedback" method="post">
+    <div class="row">
+        <center><h3>Feedback</h3></center><br>
+      
+      <div class="col-75">
+        
+    <div class="row">
+      <div class="col-25">
+        <label >Select a Branch</label>
+      </div>
+      <div class="col-75">
+        <select name="branch_id" required>
+            <option value="0">select</option>
+            {% for branch in branches %}
+           
+            <option value="{{branch['BRANCH_ID']}}">{{branch.RESTAURANT_NAME}} - {{branch.BRANCH_NAME}}</option>
+            
+           
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label >Select a Rating</label>
+      </div>
+      <div class="col-75">
+        <select name="rating" required>
+            <option value="">select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+      </div>
+    </div>
+    
+    <br>
+    <div class="row">
+        <center><button type="submit">Submit Feedback</button></center>
+    </div>
+    </form>
+  </div>
+  
+</body>
+
+</html>

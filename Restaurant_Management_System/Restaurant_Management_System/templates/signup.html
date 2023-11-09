@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Sign Up Page</title>
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <form method="POST" action="{{ url_for('signup') }}">
+  <div class="card">
+    <div class="form">
+      <h3>Sign Up Page</h3>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+
+      <p class="messages"> {{ message }} </p>
+
+      {% endfor %}
+      {% endif %}
+      {% endwith%}
+      <div class="input-field">
+        <i class="fa fa-envelope"></i>
+        <input type="number" name="user_id" placeholder="User Id">
+    </div>
+      <div class="input-field">
+          <i class="fa fa-envelope"></i>
+          <input type="text" name="user_name" placeholder="User Name">
+      </div>
+      <div class="input-field">
+        <i class="fa fa-lock"></i>
+        <input type="password" name="password" placeholder="Password">
+    </div>
+    <button>Sign up</button>
+    <p><a href="/login">Login</a></p>
+    </div>
+    <div class="image">
+      <div class="overlay">
+        <img src="static/images/food.jpg" width="450" height="450">
+      </div>
+    </div>
+  </div>
+</form>
+</body>
+</html>
